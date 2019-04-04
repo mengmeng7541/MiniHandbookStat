@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>§ Chapter 5 Regression Analysis | A Mini Handbook of Statistical Analyses</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="§ Chapter 5 Regression Analysis | A Mini Handbook of Statistical Analyses" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="§ Chapter 5 Regression Analysis | A Mini Handbook of Statistical Analyses" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Charlotte">
+
+
+<meta name="date" content="2019-04-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="chi-square-test.html">
+<link rel="next" href="categorical-data-analysis.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.5/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/dt-ext-fixedcolumns-1.10.16/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-fixedcolumns-1.10.16/js/dataTables.fixedColumns.min.js"></script>
+<link href="libs/dt-ext-fixedheader-1.10.16/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-fixedheader-1.10.16/js/dataTables.fixedHeader.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Mini Handbook </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prepare</a></li>
+<li class="chapter" data-level="1" data-path="basic-intro.html"><a href="basic-intro.html"><i class="fa fa-check"></i><b>1</b> Basic Intro</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-intro.html"><a href="basic-intro.html#descriptive-statistics"><i class="fa fa-check"></i><b>1.1</b> Descriptive statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-intro.html"><a href="basic-intro.html#normality-test"><i class="fa fa-check"></i><b>1.2</b> Normality Test</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="students-t-test.html"><a href="students-t-test.html"><i class="fa fa-check"></i><b>2</b> Student’s t-test</a><ul>
+<li class="chapter" data-level="2.1" data-path="students-t-test.html"><a href="students-t-test.html#one-sample-t-test"><i class="fa fa-check"></i><b>2.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="2.2" data-path="students-t-test.html"><a href="students-t-test.html#paired-t-test"><i class="fa fa-check"></i><b>2.2</b> Paired t-test</a></li>
+<li class="chapter" data-level="2.3" data-path="students-t-test.html"><a href="students-t-test.html#two-samples-t-test"><i class="fa fa-check"></i><b>2.3</b> Two samples t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a></li>
+<li class="chapter" data-level="4" data-path="chi-square-test.html"><a href="chi-square-test.html"><i class="fa fa-check"></i><b>4</b> Chi-Square Test</a><ul>
+<li class="chapter" data-level="4.1" data-path="chi-square-test.html"><a href="chi-square-test.html#cross-table"><i class="fa fa-check"></i><b>4.1</b> Cross Table</a></li>
+<li class="chapter" data-level="4.2" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-goodness-of-fit"><i class="fa fa-check"></i><b>4.2</b> Test of Goodness of Fit</a></li>
+<li class="chapter" data-level="4.3" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-homogeneity"><i class="fa fa-check"></i><b>4.3</b> Test of Homogeneity</a></li>
+<li class="chapter" data-level="4.4" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-independence"><i class="fa fa-check"></i><b>4.4</b> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regression-analysis.html"><a href="regression-analysis.html"><i class="fa fa-check"></i><b>5</b> Regression Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="regression-analysis.html"><a href="regression-analysis.html#linear-regression"><i class="fa fa-check"></i><b>5.1</b> Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="regression-analysis.html"><a href="regression-analysis.html#multiple-regression-analysis"><i class="fa fa-check"></i><b>5.2</b> Multiple Regression Analysis</a></li>
+<li class="chapter" data-level="5.3" data-path="regression-analysis.html"><a href="regression-analysis.html#logistic-regression-anaylsis"><i class="fa fa-check"></i><b>5.3</b> Logistic Regression Anaylsis</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="categorical-data-analysis.html"><a href="categorical-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Categorical Data Analysis</a></li>
+<li class="chapter" data-level="7" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html"><i class="fa fa-check"></i><b>7</b> Nonparametric Statistics</a><ul>
+<li class="chapter" data-level="7.1" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>7.1</b> Kolmogorov-Smirnov Test</a></li>
+<li class="chapter" data-level="7.2" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#wilcoxon-signed-ranks-test"><i class="fa fa-check"></i><b>7.2</b> Wilcoxon Signed Ranks Test</a></li>
+<li class="chapter" data-level="7.3" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#sign-test"><i class="fa fa-check"></i><b>7.3</b> Sign Test</a></li>
+<li class="chapter" data-level="7.4" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#mann-whitney-test-wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>7.4</b> Mann-Whitney Test ( Wilcoxon rank-sum test)</a></li>
+<li class="chapter" data-level="7.5" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#two-sample-kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>7.5</b> Two sample Kolmogorov-Smirnov Test</a></li>
+<li class="chapter" data-level="7.6" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#kruskal-wallis-test"><i class="fa fa-check"></i><b>7.6</b> Kruskal-Wallis Test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>8</b> Survival Analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="survival-analysis.html"><a href="survival-analysis.html#kaplan-meier-estimate"><i class="fa fa-check"></i><b>8.1</b> Kaplan-Meier estimate</a></li>
+<li class="chapter" data-level="8.2" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-ph-models"><i class="fa fa-check"></i><b>8.2</b> Cox PH models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="generalized-estimating-equatio.html"><a href="generalized-estimating-equatio.html"><i class="fa fa-check"></i><b>9</b> Generalized Estimating Equatio</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Mini Handbook of Statistical Analyses</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regression-analysis" class="section level1">
+<h1><span class="header-section-number">§ Chapter 5</span> Regression Analysis</h1>
+<div id="linear-regression" class="section level2">
+<h2><span class="header-section-number">5.1</span> Linear Regression</h2>
+<blockquote>
+<p>Data :【Modern Elementary Statistics (11th Edition): John E. Freund; p418; 16.7】</p>
+<p>The following data show the average number of hours that six students spent on homework per week and their grade-point indexes for the courses they took in that semester:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">28</span>, <span class="dv">13</span>, <span class="dv">20</span>, <span class="dv">4</span>, <span class="dv">10</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="fl">2.7</span>, <span class="fl">1.3</span>, <span class="fl">1.9</span>, <span class="fl">0.9</span>, <span class="fl">1.7</span>)
+<span class="kw">summary</span>(<span class="kw">lm</span>(y<span class="op">~</span><span class="dv">1</span><span class="op">+</span>x))</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ 1 + x)
+## 
+## Residuals:
+##        1        2        3        4        5        6 
+##  0.25000  0.05814 -0.31279 -0.19302 -0.09535  0.29302 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  0.72093    0.24641   2.926  0.04300 * 
+## x            0.06860    0.01467   4.678  0.00946 **
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.272 on 4 degrees of freedom
+## Multiple R-squared:  0.8455, Adjusted R-squared:  0.8068 
+## F-statistic: 21.88 on 1 and 4 DF,  p-value: 0.009461</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, y)
+<span class="kw">abline</span>( <span class="kw">lm</span>(y<span class="op">~</span><span class="dv">1</span><span class="op">+</span>x), <span class="dt">col=</span><span class="dv">3</span>)</code></pre></div>
+<p><img src="Charlotte_Statistics_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>The regression equation is <span class="math inline">\(Y=0.721+0.069x\)</span></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_1=0\)</span><br />
+<span class="math inline">\(H_A\)</span>: <span class="math inline">\(\beta_1\neq0\)</span></li>
+<li><span class="math inline">\(\alpha=0.01\)</span></li>
+<li>The value of the test statistic, <span class="math inline">\(t=4.698, p-value=0.009 &lt; 0.01\)</span>. We conclude that <span class="math inline">\(\beta_1\neq0\)</span> or there is a linear association between six students spent on homework per week and their grade-point indexes.</li>
+<li>By ANOVA table, since <span class="math inline">\(F=21.884, p-value=0.09 &lt; 0.01\)</span>.We conclude that <span class="math inline">\(\beta_1\neq0\)</span>. This is the same result as when the t test. In simple linear regression. <span class="math inline">\(F=t^2 ; F(1-\alpha; 1, n-2)=[t(1-\alpha/2; n-2)]^2\)</span></li>
+</ol>
+</div>
+<div id="multiple-regression-analysis" class="section level2">
+<h2><span class="header-section-number">5.2</span> Multiple Regression Analysis</h2>
+<blockquote>
+<p>Data :【Modern Elementary Statistics (11th Edition): John E. Freund; p424】</p>
+<p>The following data show the number of bedrooms, the number of baths, and the prices at which eight one-family houses sold recently in a certain community:</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mltireg &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+   x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>),
+   x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>),
+   y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">143800</span>, <span class="dv">109300</span>, <span class="dv">158800</span>, <span class="dv">109200</span>,
+          <span class="dv">154700</span>, <span class="dv">114900</span>, <span class="dv">188400</span>, <span class="dv">142900</span>)
+                      )
+lm.m &lt;-<span class="st"> </span><span class="kw">lm</span> (y <span class="op">~</span>x1<span class="op">+</span>x2, <span class="dt">data=</span>mltireg)
+<span class="kw">summary</span>(lm.m)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2, data = mltireg)
+## 
+## Residuals:
+##      1      2      3      4      5      6      7      8 
+##   5644   -869  -7343   -969  16544  -6504   5505 -12008 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)    65430      12134   5.392  0.00296 **
+## x1             16752       6636   2.524  0.05288 . 
+## x2             11234       9885   1.137  0.30724   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 10750 on 5 degrees of freedom
+## Multiple R-squared:  0.8941, Adjusted R-squared:  0.8517 
+## F-statistic:  21.1 on 2 and 5 DF,  p-value: 0.003653</code></pre>
+<p>This tells us that (in the given community at the time the study was being made) each extra bedroom added on the average 16752, and each bath 11234,to the sales price of a house.</p>
+<p>The regression equation is <span class="math inline">\(\hat{y}= 65430+16752x_1+11234x_2\)</span></p>
+</div>
+<div id="logistic-regression-anaylsis" class="section level2">
+<h2><span class="header-section-number">5.3</span> Logistic Regression Anaylsis</h2>
+<blockquote>
+<p>Data: <a href="https://stats.idre.ucla.edu/r/dae/logit-regression/" class="uri">https://stats.idre.ucla.edu/r/dae/logit-regression/</a></p>
+<p>Example 1: Suppose that we are interested in the factors that influence whether or not a political candidate wins an election. The outcome (response) variable is binary (0/1); win or lose. The predictor variables of interest are: the amount of money spent on the campaign, the amount of time spent campaigning negatively and whether or not the candidate is an incumbent. Because the response variable is binary we need to use a model that handles 0/1 variables correctly.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logit &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;c://data/logit.txt&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>)
+glm.logit &lt;-<span class="st"> </span><span class="kw">glm</span>(admit <span class="op">~</span><span class="st"> </span>gre<span class="op">+</span><span class="st"> </span>topnotch<span class="op">+</span><span class="st"> </span>gpa, <span class="dt">family=</span>binomial, <span class="dt">data=</span>logit)
+<span class="kw">summary</span>(glm.logit)</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = admit ~ gre + topnotch + gpa, family = binomial, 
+##     data = logit)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.3905  -0.8836  -0.7137   1.2745   1.9572  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -4.600813   1.096379  -4.196 2.71e-05 ***
+## gre          0.002477   0.001070   2.314   0.0207 *  
+## topnotch     0.437224   0.291853   1.498   0.1341    
+## gpa          0.667556   0.325259   2.052   0.0401 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 499.98  on 399  degrees of freedom
+## Residual deviance: 478.13  on 396  degrees of freedom
+## AIC: 486.13
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>Both gre and gpa are statistically significant while topnotch is not. The interpretation of the coefficients can be awkward. For example, for a one unit increase in gpa, the log odds of being admitted to graduate school (versus not being admitted) increases by 0.668.</p>
+<p>For this reason, many researchers prefer to exponentiate the coefficients and interpret them as odds-ratios. For example, we can say that for a one unit increase in gpa, the odds of being admitted to graduate school (versus not being admitted) increased by a factor of 1.949.</p>
+<p>Since GRE scores do not increase by a single unit (they increase only in units of 10), a one unit increase is meaningless. We can take the odds ratio and raise it to the 10th power, e.g.<span class="math inline">\(1.002^{10}=1.020181\)</span> , and say for a 10 unit increase in GRE score, the odds of admission to graduate school increased by a factor of 1.02.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chi-square-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="categorical-data-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Charlotte_Statistics.pdf", "Charlotte_Statistics.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>§ Chapter 2 Student’s t-test | A Mini Handbook of Statistical Analyses</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="§ Chapter 2 Student’s t-test | A Mini Handbook of Statistical Analyses" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="§ Chapter 2 Student’s t-test | A Mini Handbook of Statistical Analyses" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Charlotte">
+
+
+<meta name="date" content="2019-04-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="basic-intro.html">
+<link rel="next" href="one-way-anova.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.5/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/dt-ext-fixedcolumns-1.10.16/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-fixedcolumns-1.10.16/js/dataTables.fixedColumns.min.js"></script>
+<link href="libs/dt-ext-fixedheader-1.10.16/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-fixedheader-1.10.16/js/dataTables.fixedHeader.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Mini Handbook </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prepare</a></li>
+<li class="chapter" data-level="1" data-path="basic-intro.html"><a href="basic-intro.html"><i class="fa fa-check"></i><b>1</b> Basic Intro</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-intro.html"><a href="basic-intro.html#descriptive-statistics"><i class="fa fa-check"></i><b>1.1</b> Descriptive statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-intro.html"><a href="basic-intro.html#normality-test"><i class="fa fa-check"></i><b>1.2</b> Normality Test</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="students-t-test.html"><a href="students-t-test.html"><i class="fa fa-check"></i><b>2</b> Student’s t-test</a><ul>
+<li class="chapter" data-level="2.1" data-path="students-t-test.html"><a href="students-t-test.html#one-sample-t-test"><i class="fa fa-check"></i><b>2.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="2.2" data-path="students-t-test.html"><a href="students-t-test.html#paired-t-test"><i class="fa fa-check"></i><b>2.2</b> Paired t-test</a></li>
+<li class="chapter" data-level="2.3" data-path="students-t-test.html"><a href="students-t-test.html#two-samples-t-test"><i class="fa fa-check"></i><b>2.3</b> Two samples t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a></li>
+<li class="chapter" data-level="4" data-path="chi-square-test.html"><a href="chi-square-test.html"><i class="fa fa-check"></i><b>4</b> Chi-Square Test</a><ul>
+<li class="chapter" data-level="4.1" data-path="chi-square-test.html"><a href="chi-square-test.html#cross-table"><i class="fa fa-check"></i><b>4.1</b> Cross Table</a></li>
+<li class="chapter" data-level="4.2" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-goodness-of-fit"><i class="fa fa-check"></i><b>4.2</b> Test of Goodness of Fit</a></li>
+<li class="chapter" data-level="4.3" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-homogeneity"><i class="fa fa-check"></i><b>4.3</b> Test of Homogeneity</a></li>
+<li class="chapter" data-level="4.4" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-independence"><i class="fa fa-check"></i><b>4.4</b> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regression-analysis.html"><a href="regression-analysis.html"><i class="fa fa-check"></i><b>5</b> Regression Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="regression-analysis.html"><a href="regression-analysis.html#linear-regression"><i class="fa fa-check"></i><b>5.1</b> Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="regression-analysis.html"><a href="regression-analysis.html#multiple-regression-analysis"><i class="fa fa-check"></i><b>5.2</b> Multiple Regression Analysis</a></li>
+<li class="chapter" data-level="5.3" data-path="regression-analysis.html"><a href="regression-analysis.html#logistic-regression-anaylsis"><i class="fa fa-check"></i><b>5.3</b> Logistic Regression Anaylsis</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="categorical-data-analysis.html"><a href="categorical-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Categorical Data Analysis</a></li>
+<li class="chapter" data-level="7" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html"><i class="fa fa-check"></i><b>7</b> Nonparametric Statistics</a><ul>
+<li class="chapter" data-level="7.1" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>7.1</b> Kolmogorov-Smirnov Test</a></li>
+<li class="chapter" data-level="7.2" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#wilcoxon-signed-ranks-test"><i class="fa fa-check"></i><b>7.2</b> Wilcoxon Signed Ranks Test</a></li>
+<li class="chapter" data-level="7.3" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#sign-test"><i class="fa fa-check"></i><b>7.3</b> Sign Test</a></li>
+<li class="chapter" data-level="7.4" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#mann-whitney-test-wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>7.4</b> Mann-Whitney Test ( Wilcoxon rank-sum test)</a></li>
+<li class="chapter" data-level="7.5" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#two-sample-kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>7.5</b> Two sample Kolmogorov-Smirnov Test</a></li>
+<li class="chapter" data-level="7.6" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#kruskal-wallis-test"><i class="fa fa-check"></i><b>7.6</b> Kruskal-Wallis Test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>8</b> Survival Analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="survival-analysis.html"><a href="survival-analysis.html#kaplan-meier-estimate"><i class="fa fa-check"></i><b>8.1</b> Kaplan-Meier estimate</a></li>
+<li class="chapter" data-level="8.2" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-ph-models"><i class="fa fa-check"></i><b>8.2</b> Cox PH models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="generalized-estimating-equatio.html"><a href="generalized-estimating-equatio.html"><i class="fa fa-check"></i><b>9</b> Generalized Estimating Equatio</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Mini Handbook of Statistical Analyses</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="students-t-test" class="section level1">
+<h1><span class="header-section-number">§ Chapter 2</span> Student’s t-test</h1>
+<blockquote>
+<p>Hypothesis testing is a statistical method that is used in making statistical decisions using experimental data. Hypothesis Testing is basically an assumption that we make about the population parameter.</p>
+</blockquote>
+<div id="one-sample-t-test" class="section level2">
+<h2><span class="header-section-number">2.1</span> One sample t-test</h2>
+<blockquote>
+<p>Data : 【Modern Elementary Statistics (11th Edition): John E. Freund; p308; 12.6】</p>
+<p>The yield of alfalfa from a random sample of six test plots in 1.4, 1.6, 0.9, 1.9, 2.2, and 1.2 tons per acre.</p>
+</blockquote>
+<ul>
+<li>(a). Check whether these data can be looked upon as a sample from a normal population</li>
+<li>(b). If so, test at the 0.05 level of significance whether this supports the contention that the average yield for this kind of alfalfa is 1.5 tons per acre.</li>
+<li>Assumption: the population we are sampling has roughly the shape of a normal distribution.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">asfalfa &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.4</span>, <span class="fl">1.6</span>, <span class="fl">0.9</span>, <span class="fl">1.9</span>, <span class="fl">2.2</span>, <span class="fl">1.2</span> )
+<span class="kw">t.test</span>(asfalfa, <span class="dt">mu=</span><span class="fl">1.5</span>)</code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  asfalfa
+## t = 0.17303, df = 5, p-value = 0.8694
+## alternative hypothesis: true mean is not equal to 1.5
+## 95 percent confidence interval:
+##  1.038130 2.028536
+## sample estimates:
+## mean of x 
+##  1.533333</code></pre>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0: \mu =1.5\)</span> v.s. <span class="math inline">\(H_a: \mu \not= 1.5\)</span></li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+<li>Reject the null hypothesis if <span class="math inline">\(t\le-2.571\)</span> or <span class="math inline">\(t\ge 2.571\)</span>, where <span class="math inline">\(t = \frac{\overline{X} - \mu_0}{S/\sqrt{n}}\)</span>, and <span class="math inline">\(2.571\)</span> is the value of <span class="math inline">\(t_{0.025}\)</span> for <span class="math inline">\(6-1=5\)</span> degrees of freedom.</li>
+<li>Calculating the formula for <span class="math inline">\(t\)</span>, <span class="math inline">\(t = \frac{1.5333-1.5}{0.47188/\sqrt{6}}\approx 0.173\)</span></li>
+<li>Since <span class="math inline">\(t=0.173\)</span> falls between <span class="math inline">\(-2.571\)</span> and <span class="math inline">\(2.571\)</span>, the <span class="math inline">\(H_0: \mu =1.5\)</span> can not be rejected;<br />
+in other word, the data tend to support the contention that the average yield of the given kind of alfalfa is 1.5 tons per acre.</li>
+</ol>
+</div>
+<div id="paired-t-test" class="section level2">
+<h2><span class="header-section-number">2.2</span> Paired t-test</h2>
+<blockquote>
+<p>Data : 【Modern Elementary Statistics (11th Edition): John E. Freund; p317; 12.9】</p>
+<p>Following are the average weekly losses of worker hours due to accidents in ten industrial plants before and after the installation of an elaborate safety program:<br />
+45 and 36 、 73 and 60 、 46 and 44 、 124 and 119 、 33 and 35 、<br />
+57 and 51 、 83 and 77 、 34 and 29 、 26 and 24 、17 and 11</p>
+<p>Use the 0.05 level of significance to test whether the safety program is effective.</p>
+</blockquote>
+<ul>
+<li>Assumption: the population we are sampling has roughly the shape of a normal distribution.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">73</span>, <span class="dv">46</span>, <span class="dv">124</span>, <span class="dv">33</span>, <span class="dv">57</span>, <span class="dv">83</span>, <span class="dv">34</span>, <span class="dv">26</span>, <span class="dv">17</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">36</span>, <span class="dv">60</span>, <span class="dv">44</span>, <span class="dv">119</span>, <span class="dv">35</span>, <span class="dv">51</span>, <span class="dv">77</span>, <span class="dv">29</span>, <span class="dv">24</span>, <span class="dv">11</span>)
+
+<span class="kw">t.test</span>(x, y, <span class="dt">paired=</span><span class="ot">TRUE</span>, <span class="dt">alternative=</span><span class="st">&#39;greater&#39;</span> )</code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  x and y
+## t = 4.0333, df = 9, p-value = 0.001479
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  2.836619      Inf
+## sample estimates:
+## mean of the differences 
+##                     5.2</code></pre>
+<p>The differences between the respective pairs are 9, 13, 2, 5, -2, 6, 6, 5, 2, and 6.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0: \mu =0\)</span> v.s. <span class="math inline">\(H_a: \mu \ge 0\)</span></li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+<li>Reject the null hypothesis if <span class="math inline">\(t\ge 1.833\)</span>, where <span class="math inline">\(t = \frac{\overline{X} - \mu_0}{S/\sqrt{n}}\)</span>, and <span class="math inline">\(1.8333\)</span> is the value of <span class="math inline">\(t_{0.05}\)</span> for <span class="math inline">\(10-1=9\)</span> degrees of freedom.</li>
+<li>Calculating the formula for <span class="math inline">\(t\)</span>, <span class="math inline">\(t = \frac{5.2-0}{4.077/\sqrt{10}}\approx 4.033\)</span></li>
+<li>Since <span class="math inline">\(t=4.033\)</span> falls exceeds <span class="math inline">\(1.833\)</span>, the <span class="math inline">\(H_0: \mu =0\)</span> must be rejected; in other word, we have shown that the industrial safety program is effective.</li>
+</ol>
+</div>
+<div id="two-samples-t-test" class="section level2">
+<h2><span class="header-section-number">2.3</span> Two samples t-test</h2>
+<blockquote>
+<p>Data : 【Modern Elementary Statistics (11th Edition): John E. Freund; p315; 12.8】</p>
+<p>The following random samples are measurements of the heat-producing capacity ( in millions of calories pet ton ) of coal from two mines :</p>
+<p>Mine1: 8380 8180 8500 7840 7990</p>
+<p>Mine2: 7660 7510 7910 8070 7790</p>
+<p>Use the 0.05 level of significance to test whether the difference between the means of these two samples is significant.</p>
+</blockquote>
+<ul>
+<li>Assumption: 1.The population we are sampling has roughly the shape of a normal distribution. 2.The two samples have equal standard deviations. 3.The two samples are independent</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">M1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8380</span>, <span class="dv">8180</span>, <span class="dv">8500</span>, <span class="dv">7840</span>, <span class="dv">7990</span>)
+M2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7660</span>, <span class="dv">7510</span>, <span class="dv">7910</span>, <span class="dv">8070</span>, <span class="dv">7790</span>)
+<span class="kw">t.test</span>(M1, M2, <span class="dt">var.equal=</span><span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  M1 and M2
+## t = 2.5118, df = 8, p-value = 0.03627
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   31.95248 748.04752
+## sample estimates:
+## mean of x mean of y 
+##      8178      7788</code></pre>
+<p>We suspect the assumption of <span class="math inline">\(\sigma_1^2=\sigma_2^2\)</span></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0: \mu_1 =\mu_2\)</span> v.s. <span class="math inline">\(H_a: \mu_1 \neq \mu_2\)</span></li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+<li>Reject the null hypothesis if <span class="math inline">\(t\le-2.306\)</span> or <span class="math inline">\(t\ge2.306\)</span> , where <span class="math inline">\(t\)</span> is given by the formula above, and <span class="math inline">\(2.306\)</span> is the critical value .</li>
+<li>Calculating the formula for <span class="math inline">\(t\)</span>, <span class="math inline">\(t=\frac{(8178-7788)}{245.5\sqrt{\frac{1}{5}+\frac{1}{5}}}\approx 2.51\)</span></li>
+<li>Since <span class="math inline">\(t = 2.51\)</span> falls exceeds <span class="math inline">\(2.306\)</span>, the <span class="math inline">\(H_0: \mu_1 =\mu_2\)</span> must be rejected; in other words, we conclude that the difference between the two sample means is significant.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basic-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="one-way-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Charlotte_Statistics.pdf", "Charlotte_Statistics.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

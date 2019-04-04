@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>§ Chapter 9 Generalized Estimating Equation | A Mini Handbook of Statistical Analyses</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="§ Chapter 9 Generalized Estimating Equation | A Mini Handbook of Statistical Analyses" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="§ Chapter 9 Generalized Estimating Equation | A Mini Handbook of Statistical Analyses" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Charlotte">
+
+
+<meta name="date" content="2019-04-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="survival-analysis.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Mini Handbook </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prepare</a></li>
+<li class="chapter" data-level="1" data-path="basic-intro.html"><a href="basic-intro.html"><i class="fa fa-check"></i><b>1</b> Basic Intro</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-intro.html"><a href="basic-intro.html#descriptive-statistics"><i class="fa fa-check"></i><b>1.1</b> Descriptive statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-intro.html"><a href="basic-intro.html#normality-test"><i class="fa fa-check"></i><b>1.2</b> Normality Test</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="students-t-test.html"><a href="students-t-test.html"><i class="fa fa-check"></i><b>2</b> Student’s t-test</a><ul>
+<li class="chapter" data-level="2.1" data-path="students-t-test.html"><a href="students-t-test.html#one-sample-t-test"><i class="fa fa-check"></i><b>2.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="2.2" data-path="students-t-test.html"><a href="students-t-test.html#paired-t-test"><i class="fa fa-check"></i><b>2.2</b> Paired t-test</a></li>
+<li class="chapter" data-level="2.3" data-path="students-t-test.html"><a href="students-t-test.html#two-samples-t-test"><i class="fa fa-check"></i><b>2.3</b> Two samples t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a></li>
+<li class="chapter" data-level="4" data-path="chi-square-test.html"><a href="chi-square-test.html"><i class="fa fa-check"></i><b>4</b> Chi-Square Test</a><ul>
+<li class="chapter" data-level="4.1" data-path="chi-square-test.html"><a href="chi-square-test.html#cross-table"><i class="fa fa-check"></i><b>4.1</b> Cross Table</a></li>
+<li class="chapter" data-level="4.2" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-goodness-of-fit"><i class="fa fa-check"></i><b>4.2</b> Test of Goodness of Fit</a></li>
+<li class="chapter" data-level="4.3" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-homogeneity"><i class="fa fa-check"></i><b>4.3</b> Test of Homogeneity</a></li>
+<li class="chapter" data-level="4.4" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-independence"><i class="fa fa-check"></i><b>4.4</b> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regression-analysis.html"><a href="regression-analysis.html"><i class="fa fa-check"></i><b>5</b> Regression Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="regression-analysis.html"><a href="regression-analysis.html#linear-regression"><i class="fa fa-check"></i><b>5.1</b> Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="regression-analysis.html"><a href="regression-analysis.html#multiple-regression-analysis"><i class="fa fa-check"></i><b>5.2</b> Multiple Regression Analysis</a></li>
+<li class="chapter" data-level="5.3" data-path="regression-analysis.html"><a href="regression-analysis.html#logistic-regression-anaylsis"><i class="fa fa-check"></i><b>5.3</b> Logistic Regression Anaylsis</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="categorical-data-analysis.html"><a href="categorical-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Categorical Data Analysis</a></li>
+<li class="chapter" data-level="7" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html"><i class="fa fa-check"></i><b>7</b> Nonparametric Statistics</a><ul>
+<li class="chapter" data-level="7.1" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>7.1</b> Kolmogorov-Smirnov Test</a></li>
+<li class="chapter" data-level="7.2" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#wilcoxon-signed-ranks-test"><i class="fa fa-check"></i><b>7.2</b> Wilcoxon Signed Ranks Test</a></li>
+<li class="chapter" data-level="7.3" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#sign-test"><i class="fa fa-check"></i><b>7.3</b> Sign Test</a></li>
+<li class="chapter" data-level="7.4" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#mann-whitney-test-wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>7.4</b> Mann-Whitney Test ( Wilcoxon rank-sum test)</a></li>
+<li class="chapter" data-level="7.5" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#two-sample-kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>7.5</b> Two sample Kolmogorov-Smirnov Test</a></li>
+<li class="chapter" data-level="7.6" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#kruskal-wallis-test"><i class="fa fa-check"></i><b>7.6</b> Kruskal-Wallis Test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>8</b> Survival Analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="survival-analysis.html"><a href="survival-analysis.html#kaplan-meier-estimate"><i class="fa fa-check"></i><b>8.1</b> Kaplan-Meier estimate</a></li>
+<li class="chapter" data-level="8.2" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-ph-models"><i class="fa fa-check"></i><b>8.2</b> Cox PH models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="generalized-estimating-equation.html"><a href="generalized-estimating-equation.html"><i class="fa fa-check"></i><b>9</b> Generalized Estimating Equation</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Mini Handbook of Statistical Analyses</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="generalized-estimating-equation" class="section level1">
+<h1><span class="header-section-number">§ Chapter 9</span> Generalized Estimating Equation</h1>
+<blockquote>
+<p>Data： These data are from a 1996 study (Gregoire, Kumar Everitt, Henderson and Studd) on the efficacy of estrogen patches in treating postnatal depression. Women were randomly assigned to either a placebo control group (group=0, n=27) or estrogen patch group (group=1, n=34). Prior to the first treatment all patients took the Edinburgh Postnatal Depression Scale (EPDS). EPDS data was collected monthly for six months once the treatment began. Higher scores on the EDPS are indicative of higher levels of depression. Depression scores greater than or equal to 11 were coded as 1.<br />
+install.packages(“gee”)</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">de &lt;-<span class="st">  </span><span class="kw">read.table</span>(<span class="st">&quot;c://data/gee.txt&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>)
+
+<span class="kw">library</span>(gee)
+
+y &lt;-<span class="st"> </span>(de<span class="op">$</span>depressd <span class="op">~</span><span class="st"> </span>de<span class="op">$</span>visit <span class="op">+</span><span class="st"> </span>de<span class="op">$</span>group )
+<span class="kw">gee</span>( y, <span class="dt">id=</span>de<span class="op">$</span>subj, <span class="dt">family=</span>binomial, <span class="dt">corstr=</span><span class="st">&quot;exchangeable&quot;</span>)</code></pre></div>
+<pre><code>## Beginning Cgee S-function, @(#) geeformula.q 4.13 98/01/27</code></pre>
+<pre><code>## running glm to get initial regression estimate</code></pre>
+<pre><code>## (Intercept)    de$visit    de$group 
+##   2.3836603  -0.4402142  -1.6066020</code></pre>
+<pre><code>## 
+##  GEE:  GENERALIZED LINEAR MODELS FOR DEPENDENT DATA
+##  gee S-function, version 4.13 modified 98/01/27 (1998) 
+## 
+## Model:
+##  Link:                      Logit 
+##  Variance to Mean Relation: Binomial 
+##  Correlation Structure:     Exchangeable 
+## 
+## Call:
+## gee(formula = y, id = de$subj, family = binomial, corstr = &quot;exchangeable&quot;)
+## 
+## Number of observations :  295 
+## 
+## Maximum cluster size   :  6 
+## 
+## 
+## Coefficients:
+## (Intercept)    de$visit    de$group 
+##   2.4089588  -0.3985943  -1.6158979 
+## 
+## Estimated Scale Parameter:  1.00449
+## Number of Iterations:  3
+## 
+## Working Correlation[1:4,1:4]
+##          [,1]     [,2]     [,3]     [,4]
+## [1,] 1.000000 0.449131 0.449131 0.449131
+## [2,] 0.449131 1.000000 0.449131 0.449131
+## [3,] 0.449131 0.449131 1.000000 0.449131
+## [4,] 0.449131 0.449131 0.449131 1.000000
+## 
+## 
+## Returned Error Value:
+## [1] 0</code></pre>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="survival-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Charlotte_Statistics.pdf", "Charlotte_Statistics.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

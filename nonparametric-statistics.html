@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>§ Chapter 7 Nonparametric Statistics | A Mini Handbook of Statistical Analyses</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="§ Chapter 7 Nonparametric Statistics | A Mini Handbook of Statistical Analyses" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="§ Chapter 7 Nonparametric Statistics | A Mini Handbook of Statistical Analyses" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Charlotte">
+
+
+<meta name="date" content="2019-04-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="categorical-data-analysis.html">
+<link rel="next" href="survival-analysis.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.5/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/dt-ext-fixedcolumns-1.10.16/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-fixedcolumns-1.10.16/js/dataTables.fixedColumns.min.js"></script>
+<link href="libs/dt-ext-fixedheader-1.10.16/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-fixedheader-1.10.16/js/dataTables.fixedHeader.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Mini Handbook </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prepare</a></li>
+<li class="chapter" data-level="1" data-path="basic-intro.html"><a href="basic-intro.html"><i class="fa fa-check"></i><b>1</b> Basic Intro</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-intro.html"><a href="basic-intro.html#descriptive-statistics"><i class="fa fa-check"></i><b>1.1</b> Descriptive statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-intro.html"><a href="basic-intro.html#normality-test"><i class="fa fa-check"></i><b>1.2</b> Normality Test</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="students-t-test.html"><a href="students-t-test.html"><i class="fa fa-check"></i><b>2</b> Student’s t-test</a><ul>
+<li class="chapter" data-level="2.1" data-path="students-t-test.html"><a href="students-t-test.html#one-sample-t-test"><i class="fa fa-check"></i><b>2.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="2.2" data-path="students-t-test.html"><a href="students-t-test.html#paired-t-test"><i class="fa fa-check"></i><b>2.2</b> Paired t-test</a></li>
+<li class="chapter" data-level="2.3" data-path="students-t-test.html"><a href="students-t-test.html#two-samples-t-test"><i class="fa fa-check"></i><b>2.3</b> Two samples t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a></li>
+<li class="chapter" data-level="4" data-path="chi-square-test.html"><a href="chi-square-test.html"><i class="fa fa-check"></i><b>4</b> Chi-Square Test</a><ul>
+<li class="chapter" data-level="4.1" data-path="chi-square-test.html"><a href="chi-square-test.html#cross-table"><i class="fa fa-check"></i><b>4.1</b> Cross Table</a></li>
+<li class="chapter" data-level="4.2" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-goodness-of-fit"><i class="fa fa-check"></i><b>4.2</b> Test of Goodness of Fit</a></li>
+<li class="chapter" data-level="4.3" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-homogeneity"><i class="fa fa-check"></i><b>4.3</b> Test of Homogeneity</a></li>
+<li class="chapter" data-level="4.4" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-independence"><i class="fa fa-check"></i><b>4.4</b> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regression-analysis.html"><a href="regression-analysis.html"><i class="fa fa-check"></i><b>5</b> Regression Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="regression-analysis.html"><a href="regression-analysis.html#linear-regression"><i class="fa fa-check"></i><b>5.1</b> Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="regression-analysis.html"><a href="regression-analysis.html#multiple-regression-analysis"><i class="fa fa-check"></i><b>5.2</b> Multiple Regression Analysis</a></li>
+<li class="chapter" data-level="5.3" data-path="regression-analysis.html"><a href="regression-analysis.html#logistic-regression-anaylsis"><i class="fa fa-check"></i><b>5.3</b> Logistic Regression Anaylsis</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="categorical-data-analysis.html"><a href="categorical-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Categorical Data Analysis</a></li>
+<li class="chapter" data-level="7" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html"><i class="fa fa-check"></i><b>7</b> Nonparametric Statistics</a><ul>
+<li class="chapter" data-level="7.1" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>7.1</b> Kolmogorov-Smirnov Test</a></li>
+<li class="chapter" data-level="7.2" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#wilcoxon-signed-ranks-test"><i class="fa fa-check"></i><b>7.2</b> Wilcoxon Signed Ranks Test</a></li>
+<li class="chapter" data-level="7.3" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#sign-test"><i class="fa fa-check"></i><b>7.3</b> Sign Test</a></li>
+<li class="chapter" data-level="7.4" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#mann-whitney-test-wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>7.4</b> Mann-Whitney Test ( Wilcoxon rank-sum test)</a></li>
+<li class="chapter" data-level="7.5" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#two-sample-kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>7.5</b> Two sample Kolmogorov-Smirnov Test</a></li>
+<li class="chapter" data-level="7.6" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#kruskal-wallis-test"><i class="fa fa-check"></i><b>7.6</b> Kruskal-Wallis Test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>8</b> Survival Analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="survival-analysis.html"><a href="survival-analysis.html#kaplan-meier-estimate"><i class="fa fa-check"></i><b>8.1</b> Kaplan-Meier estimate</a></li>
+<li class="chapter" data-level="8.2" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-ph-models"><i class="fa fa-check"></i><b>8.2</b> Cox PH models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="generalized-estimating-equatio.html"><a href="generalized-estimating-equatio.html"><i class="fa fa-check"></i><b>9</b> Generalized Estimating Equatio</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Mini Handbook of Statistical Analyses</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="nonparametric-statistics" class="section level1">
+<h1><span class="header-section-number">§ Chapter 7</span> Nonparametric Statistics</h1>
+<div id="kolmogorov-smirnov-test" class="section level2">
+<h2><span class="header-section-number">7.1</span> Kolmogorov-Smirnov Test</h2>
+<blockquote>
+<p>Data : 【Practical Nonparametric Statistics (3rd Edition) :Wiley Series in Probability and Statistics; p433】</p>
+<p>The random sample of size 10 is obtained: 0.621, 0.503, 0.203, 0.477, 0.710, 0.581, 0.329, 0.480, 0.554, 0.382.<br />
+The null hypothesis is that the distribution function is uniform distribution.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.621</span>, <span class="fl">0.503</span>, <span class="fl">0.203</span>, <span class="fl">0.477</span>, <span class="fl">0.710</span>, <span class="fl">0.581</span>, <span class="fl">0.329</span>, <span class="fl">0.480</span>, <span class="fl">0.554</span>, <span class="fl">0.382</span>)
+<span class="kw">ks.test</span> (size, <span class="st">&quot;punif&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</code></pre></div>
+<pre><code>## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  size
+## D = 0.29, p-value = 0.3067
+## alternative hypothesis: two-sided</code></pre>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0\)</span>: The distribution function is uniform distribution.<br />
+<span class="math inline">\(H_A\)</span>: The distribution function is not uniform distribution.</li>
+<li><span class="math inline">\(\alpha=0.01\)</span></li>
+<li>By Kolmogorov-Smirnov test, p-value is 0.3067 &gt;0.01, the null hypothesis cannot be rejected; there is no real evidence to indicate that the distribution function is not uniform distribution.</li>
+</ol>
+</div>
+<div id="wilcoxon-signed-ranks-test" class="section level2">
+<h2><span class="header-section-number">7.2</span> Wilcoxon Signed Ranks Test</h2>
+<blockquote>
+<p>Data : 【Modern Elementary Statistics (11th Edition): John E. Freund; p317; 12.9】<br />
+(we used in paired T test before)</p>
+<p>Following are the average weekly losses of worker hours due to accidents in ten industrial plants before and after the installation of an elaborate safety program:<br />
+45 and 36 、 73 and 60 、 46 and 44 、 124 and 119 、 33 and 35 、<br />
+57 and 51 、 83 and 77 、 34 and 29 、 26 and 24 、17 and 11</p>
+<p>Based on the Wilcoxon Signed Ranks Test, use 0.05 level of significance that the safety program is effective.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">73</span>, <span class="dv">46</span>, <span class="dv">124</span>, <span class="dv">33</span>, <span class="dv">57</span>, <span class="dv">83</span>, <span class="dv">34</span>, <span class="dv">26</span>, <span class="dv">17</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">36</span>, <span class="dv">60</span>, <span class="dv">44</span>, <span class="dv">119</span>, <span class="dv">35</span>, <span class="dv">51</span>, <span class="dv">77</span>, <span class="dv">29</span>, <span class="dv">24</span>, <span class="dv">11</span>)
+<span class="kw">wilcox.test</span>(x, y, <span class="dt">alternative=</span><span class="st">&quot;greater&quot;</span>, <span class="dt">paired=</span><span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## Warning in wilcox.test.default(x, y, alternative = &quot;greater&quot;, paired =
+## TRUE): cannot compute exact p-value with ties</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  x and y
+## V = 53, p-value = 0.005185
+## alternative hypothesis: true location shift is greater than 0</code></pre>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(H_0:\tilde{\mu}_D=0\)</span> (<span class="math inline">\(\tilde{\mu}_D\)</span> is the median of the population of differences)<br />
+<span class="math inline">\(H_A:\tilde{\mu}_D&gt;0\)</span></p></li>
+<li><span class="math inline">\(\alpha=0.05\)</span><br />
+</li>
+<li>From Wilcoxon Signed Ranks Test, <span class="math inline">\(T^+\)</span>=53<br />
+</li>
+<li><p>p-value=0.005185. The null hypothesis is must be rejected . We conclude that the safety program is effective.</p></li>
+</ol>
+</div>
+<div id="sign-test" class="section level2">
+<h2><span class="header-section-number">7.3</span> Sign Test</h2>
+<blockquote>
+<p>Data is the same as Wilcoxon Signed Ranks Test</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">73</span>, <span class="dv">46</span>, <span class="dv">124</span>, <span class="dv">33</span>, <span class="dv">57</span>, <span class="dv">83</span>, <span class="dv">34</span>, <span class="dv">26</span>, <span class="dv">17</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">36</span>, <span class="dv">60</span>, <span class="dv">44</span>, <span class="dv">119</span>, <span class="dv">35</span>, <span class="dv">51</span>, <span class="dv">77</span>, <span class="dv">29</span>, <span class="dv">24</span>, <span class="dv">11</span>)
+<span class="kw">binom.test</span>(<span class="kw">sum</span>(x<span class="op">&gt;</span>y), <span class="dt">n=</span><span class="kw">length</span>(x), <span class="dt">alternative=</span><span class="st">&quot;greater&quot;</span>)</code></pre></div>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  sum(x &gt; y) and length(x)
+## number of successes = 9, number of trials = 10, p-value = 0.01074
+## alternative hypothesis: true probability of success is greater than 0.5
+## 95 percent confidence interval:
+##  0.6058367 1.0000000
+## sample estimates:
+## probability of success 
+##                    0.9</code></pre>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(H_0:\tilde{\mu}_D=0\)</span> (<span class="math inline">\(\tilde{\mu}_D\)</span> is the median of the population of differences)<br />
+<span class="math inline">\(H_A:\tilde{\mu}_D&gt;0\)</span></p></li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+<li>The test statistic is the number of plus signs, namely the number of industrial plants in which the average weekly losses in hours of labor has decreased.<br />
+</li>
+<li>If the first value is greater than the second, we use “+”. If the first value is smaller than the second, we use “ ”. So we get “ + + + + + + + +”.<br />
+Thus the test statistic is 9. By Binomial Probability Table, when n=10, p=0.5, the p-value is 0.01+0.001 = 0.011. (dbinom(10, 10, 0.5)+dbinom(9, 10, 0.5)= 0.01074219)<br />
+</li>
+<li><p>Since 0.011 is less than 0.05, the null hypothesis must be rejected. We conclude that the safety program is effective. (The result is the same as Wilcoxon Signed Ranks Test and Paired t-test).</p></li>
+</ol>
+</div>
+<div id="mann-whitney-test-wilcoxon-rank-sum-test" class="section level2">
+<h2><span class="header-section-number">7.4</span> Mann-Whitney Test ( Wilcoxon rank-sum test)</h2>
+<blockquote>
+<p>Data : 【Modern Elementary Statistics (11th Edition): John E. Freund; p469】</p>
+<p>We want to compare the grain size of sand obtained from two different locations on the moon on the basis of the following diameters(in millimeters):<br />
+Location1: 0.37 0.7 0.75 0.3 0.45 0.16 0.62 0.73 0.33<br />
+Location2: 0.86 0.55 0.8 0.42 0.97 0.84 0.24 0.51 0.92 0.62<br />
+Use the Mann-Whitney Test at 0.05 level of significance to test whether or not the two samples come from populations with equal means.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x.m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.37</span>, <span class="fl">0.7</span>, <span class="fl">0.75</span>, <span class="fl">0.3</span>, <span class="fl">0.45</span>, <span class="fl">0.16</span>, <span class="fl">0.62</span>, <span class="fl">0.73</span>, <span class="fl">0.33</span>)
+y.m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.86</span>, <span class="fl">0.55</span>, <span class="fl">0.8</span>, <span class="fl">0.42</span>, <span class="fl">0.97</span>, <span class="fl">0.84</span>, <span class="fl">0.24</span>, <span class="fl">0.51</span>, <span class="fl">0.92</span>, <span class="fl">0.62</span>)
+<span class="kw">wilcox.test</span>(x.m, y.m, <span class="dt">correct=</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## Warning in wilcox.test.default(x.m, y.m, correct = FALSE): cannot compute
+## exact p-value with ties</code></pre>
+<pre><code>## 
+##  Wilcoxon rank sum test
+## 
+## data:  x.m and y.m
+## W = 24.5, p-value = 0.09402
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0:\mu_1=\mu_2\)</span><br />
+<span class="math inline">\(H_A:\mu_1\neq\mu_2\)</span><br />
+</li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+<li>Check the table of Critical Values of U*, when n1=9, n2=10, reject the null hypothesis if <span class="math inline">\(U_{0.05}\le 20\)</span> .</li>
+<li>From Mann-Whitney Test, <span class="math inline">\(W_1=69, U_1=24\)</span>.</li>
+<li>Since <span class="math inline">\(U=24\)</span> is greater than 20, the null hypothesis cannot be rejected; we cannot conclude that there is a difference in the mean grain size of sand from the two locations on the moon.</li>
+</ol>
+</div>
+<div id="two-sample-kolmogorov-smirnov-test" class="section level2">
+<h2><span class="header-section-number">7.5</span> Two sample Kolmogorov-Smirnov Test</h2>
+<blockquote>
+<p>Data is the same as Mann-Whitney Test</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x.m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.37</span>, <span class="fl">0.7</span>, <span class="fl">0.75</span>, <span class="fl">0.3</span>, <span class="fl">0.45</span>, <span class="fl">0.16</span>, <span class="fl">0.62</span>, <span class="fl">0.73</span>, <span class="fl">0.33</span>)
+y.m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.86</span>, <span class="fl">0.55</span>, <span class="fl">0.8</span>, <span class="fl">0.42</span>, <span class="fl">0.97</span>, <span class="fl">0.84</span>, <span class="fl">0.24</span>, <span class="fl">0.51</span>, <span class="fl">0.92</span>, <span class="fl">0.62</span>)
+<span class="kw">ks.test</span>(x.m, y.m)</code></pre></div>
+<pre><code>## Warning in ks.test(x.m, y.m): cannot compute exact p-value with ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  x.m and y.m
+## D = 0.5, p-value = 0.1871
+## alternative hypothesis: two-sided</code></pre>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0:\mu_1=\mu_2\)</span><br />
+<span class="math inline">\(H_A:\mu_1\neq\mu_2\)</span><br />
+</li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+<li>By Kolmogorov-Smirnov test, p-value is 0.187 &gt;0.05, the null hypothesis cannot be rejected; there is no real evidence to indicate that the mean grain size of sand from the two locations on the moon is difference.</li>
+</ol>
+</div>
+<div id="kruskal-wallis-test" class="section level2">
+<h2><span class="header-section-number">7.6</span> Kruskal-Wallis Test</h2>
+<blockquote>
+<p>Data : 【Modern Elementary Statistics (11th Edition): John E. Freund; p475】</p>
+<p>Students are randomly assigned to groups that are taught Spanish by three different methods: (1) classroom instruction and language laboratory. (2) only classroom instruction, and (3) only self-study in language laboratory. Following are the final examination scores of samples of students from the three groups:<br />
+Method1: 94 88 91 74 86 97<br />
+Method2: 85 82 79 84 61 72 80<br />
+Method3: 89 67 72 76 69<br />
+Use the Kruskal-Wallis Test at the 0.05 level of significance to test the null hypothesis that the populations sampled are identical against the alternative hypothesis that their means are not all equal.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">M1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">94</span>, <span class="dv">88</span>, <span class="dv">91</span>, <span class="dv">74</span>, <span class="dv">86</span>, <span class="dv">97</span>)    <span class="co"># Method1</span>
+M2&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">85</span>, <span class="dv">82</span>, <span class="dv">79</span>, <span class="dv">84</span>, <span class="dv">61</span>, <span class="dv">72</span>, <span class="dv">80</span>)  <span class="co"># Method2</span>
+M3&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">89</span>, <span class="dv">67</span>, <span class="dv">72</span>, <span class="dv">76</span>, <span class="dv">69</span>)         <span class="co"># Method3</span>
+<span class="kw">kruskal.test</span>(<span class="kw">list</span>(M1, M2, M3))</code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  list(M1, M2, M3)
+## Kruskal-Wallis chi-squared = 6.6731, df = 2, p-value = 0.03556</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Equivalently,
+M &lt;-<span class="st"> </span><span class="kw">c</span>(M1, M2, M3)
+g &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">5</span>)),
+            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Method1&quot;</span>,
+                       <span class="st">&quot;Method2&quot;</span>,
+                       <span class="st">&quot;Method3&quot;</span>))
+<span class="kw">kruskal.test</span>(M, g)</code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  M and g
+## Kruskal-Wallis chi-squared = 6.6731, df = 2, p-value = 0.03556</code></pre>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0:\mu_1=\mu_2=\mu_3\)</span> (The populations are identical)<br />
+<span class="math inline">\(H_A:\mu_1,\mu_2,\mu_3\)</span> are not equal</li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+<li>Reject the null hypothesis if <span class="math inline">\(\chi^2 \ge 5.991\)</span>, which is the value of <span class="math inline">\(\chi_{0.05}^2\)</span> for <span class="math inline">\(3-1=2\)</span> degrees of freedom.</li>
+<li>From Kruskal-Wallis Test, <span class="math inline">\(\chi^2 \approx 6.6731\)</span>.</li>
+<li>Since <span class="math inline">\(\chi^2 \approx 6.6731\)</span> is greater than 5.991, the null hypothesis must be rejected; we conclude that three methods of instruction are not all equally effective.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="categorical-data-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="survival-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Charlotte_Statistics.pdf", "Charlotte_Statistics.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

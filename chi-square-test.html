@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>§ Chapter 4 Chi-Square Test | A Mini Handbook of Statistical Analyses</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="§ Chapter 4 Chi-Square Test | A Mini Handbook of Statistical Analyses" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="§ Chapter 4 Chi-Square Test | A Mini Handbook of Statistical Analyses" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Charlotte">
+
+
+<meta name="date" content="2019-04-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="one-way-anova.html">
+<link rel="next" href="regression-analysis.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.5/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/dt-ext-fixedcolumns-1.10.16/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-fixedcolumns-1.10.16/js/dataTables.fixedColumns.min.js"></script>
+<link href="libs/dt-ext-fixedheader-1.10.16/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-fixedheader-1.10.16/js/dataTables.fixedHeader.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"> Mini Handbook </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prepare</a></li>
+<li class="chapter" data-level="1" data-path="basic-intro.html"><a href="basic-intro.html"><i class="fa fa-check"></i><b>1</b> Basic Intro</a><ul>
+<li class="chapter" data-level="1.1" data-path="basic-intro.html"><a href="basic-intro.html#descriptive-statistics"><i class="fa fa-check"></i><b>1.1</b> Descriptive statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="basic-intro.html"><a href="basic-intro.html#normality-test"><i class="fa fa-check"></i><b>1.2</b> Normality Test</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="students-t-test.html"><a href="students-t-test.html"><i class="fa fa-check"></i><b>2</b> Student’s t-test</a><ul>
+<li class="chapter" data-level="2.1" data-path="students-t-test.html"><a href="students-t-test.html#one-sample-t-test"><i class="fa fa-check"></i><b>2.1</b> One sample t-test</a></li>
+<li class="chapter" data-level="2.2" data-path="students-t-test.html"><a href="students-t-test.html#paired-t-test"><i class="fa fa-check"></i><b>2.2</b> Paired t-test</a></li>
+<li class="chapter" data-level="2.3" data-path="students-t-test.html"><a href="students-t-test.html#two-samples-t-test"><i class="fa fa-check"></i><b>2.3</b> Two samples t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a></li>
+<li class="chapter" data-level="4" data-path="chi-square-test.html"><a href="chi-square-test.html"><i class="fa fa-check"></i><b>4</b> Chi-Square Test</a><ul>
+<li class="chapter" data-level="4.1" data-path="chi-square-test.html"><a href="chi-square-test.html#cross-table"><i class="fa fa-check"></i><b>4.1</b> Cross Table</a></li>
+<li class="chapter" data-level="4.2" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-goodness-of-fit"><i class="fa fa-check"></i><b>4.2</b> Test of Goodness of Fit</a></li>
+<li class="chapter" data-level="4.3" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-homogeneity"><i class="fa fa-check"></i><b>4.3</b> Test of Homogeneity</a></li>
+<li class="chapter" data-level="4.4" data-path="chi-square-test.html"><a href="chi-square-test.html#test-of-independence"><i class="fa fa-check"></i><b>4.4</b> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regression-analysis.html"><a href="regression-analysis.html"><i class="fa fa-check"></i><b>5</b> Regression Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="regression-analysis.html"><a href="regression-analysis.html#linear-regression"><i class="fa fa-check"></i><b>5.1</b> Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="regression-analysis.html"><a href="regression-analysis.html#multiple-regression-analysis"><i class="fa fa-check"></i><b>5.2</b> Multiple Regression Analysis</a></li>
+<li class="chapter" data-level="5.3" data-path="regression-analysis.html"><a href="regression-analysis.html#logistic-regression-anaylsis"><i class="fa fa-check"></i><b>5.3</b> Logistic Regression Anaylsis</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="categorical-data-analysis.html"><a href="categorical-data-analysis.html"><i class="fa fa-check"></i><b>6</b> Categorical Data Analysis</a></li>
+<li class="chapter" data-level="7" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html"><i class="fa fa-check"></i><b>7</b> Nonparametric Statistics</a><ul>
+<li class="chapter" data-level="7.1" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>7.1</b> Kolmogorov-Smirnov Test</a></li>
+<li class="chapter" data-level="7.2" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#wilcoxon-signed-ranks-test"><i class="fa fa-check"></i><b>7.2</b> Wilcoxon Signed Ranks Test</a></li>
+<li class="chapter" data-level="7.3" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#sign-test"><i class="fa fa-check"></i><b>7.3</b> Sign Test</a></li>
+<li class="chapter" data-level="7.4" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#mann-whitney-test-wilcoxon-rank-sum-test"><i class="fa fa-check"></i><b>7.4</b> Mann-Whitney Test ( Wilcoxon rank-sum test)</a></li>
+<li class="chapter" data-level="7.5" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#two-sample-kolmogorov-smirnov-test"><i class="fa fa-check"></i><b>7.5</b> Two sample Kolmogorov-Smirnov Test</a></li>
+<li class="chapter" data-level="7.6" data-path="nonparametric-statistics.html"><a href="nonparametric-statistics.html#kruskal-wallis-test"><i class="fa fa-check"></i><b>7.6</b> Kruskal-Wallis Test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="survival-analysis.html"><a href="survival-analysis.html"><i class="fa fa-check"></i><b>8</b> Survival Analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="survival-analysis.html"><a href="survival-analysis.html#kaplan-meier-estimate"><i class="fa fa-check"></i><b>8.1</b> Kaplan-Meier estimate</a></li>
+<li class="chapter" data-level="8.2" data-path="survival-analysis.html"><a href="survival-analysis.html#cox-ph-models"><i class="fa fa-check"></i><b>8.2</b> Cox PH models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="generalized-estimating-equatio.html"><a href="generalized-estimating-equatio.html"><i class="fa fa-check"></i><b>9</b> Generalized Estimating Equatio</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Mini Handbook of Statistical Analyses</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chi-square-test" class="section level1">
+<h1><span class="header-section-number">§ Chapter 4</span> Chi-Square Test</h1>
+<p>Some <em>significant</em> applications are demonstrated in this chapter.</p>
+<div id="cross-table" class="section level2">
+<h2><span class="header-section-number">4.1</span> Cross Table</h2>
+<blockquote>
+<p>Data : 【Modern Elementary Statistics (11th Edition): John E. Freund; p340】</p>
+<p>Suppose we want to investigate whether there is a relationship between the test scores of persons who have gone through a certain job-training and their subsequent performance on the job.</p>
+</blockquote>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Performance
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Poor
+</th>
+<th style="text-align:center;">
+Fair
+</th>
+<th style="text-align:center;">
+Good
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Below average
+</td>
+<td style="text-align:center;">
+67
+</td>
+<td style="text-align:center;">
+64
+</td>
+<td style="text-align:center;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Average
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+76
+</td>
+<td style="text-align:center;">
+56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Above average
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+23
+</td>
+<td style="text-align:center;">
+37
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(PT, <span class="dt">correct=</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  PT
+## X-squared = 41.014, df = 4, p-value = 2.67e-08</code></pre>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0\)</span>:Test scores and on-the-job performance are independent.<br />
+<span class="math inline">\(H_A\)</span>:Test scores and on-the-job performance are not independent.</li>
+<li><span class="math inline">\(\alpha=0.01\)</span></li>
+<li>Reject the null hypothesis if <span class="math inline">\(\chi^2 &gt; \chi_{0.01}^2(4)=13.277\)</span>, where degrees of freedom is <span class="math inline">\((3-1)(3-1)=4\)</span></li>
+<li>Since <span class="math inline">\(\chi^2\approx41.014\)</span> exceeds <span class="math inline">\(13.277\)</span>, the null hypothesis must be rejected; that is, we conclude that there is a relationship between the test scores and on-the-job performance.</li>
+</ol>
+</div>
+<div id="test-of-goodness-of-fit" class="section level2">
+<h2><span class="header-section-number">4.2</span> Test of Goodness of Fit</h2>
+<blockquote>
+<p>Data : 【Modern Elementary Statistics (11th Edition): John E. Freund; p351】</p>
+<p>The management of an airport wants to check an air-traffic controller’s claim that the number of ratio messages received per minute is a random variable having the Poisson distribution with the mean <span class="math inline">\(\lambda=1.5\)</span>.</p>
+</blockquote>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Number of radio messages
+</th>
+<th style="text-align:center;">
+Observed frequency
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+0
+</td>
+<td style="text-align:center;width: 4cm; ">
+70
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+1
+</td>
+<td style="text-align:center;width: 4cm; ">
+57
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+2
+</td>
+<td style="text-align:center;width: 4cm; ">
+46
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+3
+</td>
+<td style="text-align:center;width: 4cm; ">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:center;width: 4cm; ">
+4
+</td>
+<td style="text-align:center;width: 4cm; ">
+7
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">4</span>
+y&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">57</span>, <span class="dv">46</span>, <span class="dv">20</span>, <span class="dv">7</span>)
+q &lt;-<span class="st"> </span><span class="kw">ppois</span>(x, <span class="dt">lambda=</span><span class="fl">1.5</span>)
+n &lt;-<span class="st"> </span><span class="kw">length</span>(y)
+p&lt;-<span class="kw">numeric</span>(<span class="dt">length=</span><span class="dv">5</span>)  
+p[<span class="dv">1</span>] &lt;-<span class="st"> </span>q[<span class="dv">1</span>]
+p[n] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span>q[n<span class="op">-</span><span class="dv">1</span>]
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>(n<span class="op">-</span><span class="dv">1</span>)) p[i] &lt;-<span class="st"> </span>q[i]<span class="op">-</span>q[i<span class="op">-</span><span class="dv">1</span>]
+<span class="kw">chisq.test</span>(y, <span class="dt">p=</span>p)</code></pre></div>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  y
+## X-squared = 20.153, df = 4, p-value = 0.0004658</code></pre>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0\)</span>:The population smpled has the Poisson distribution with <span class="math inline">\(\lambda=1.5\)</span>.<br />
+<span class="math inline">\(H_A\)</span>:The population smpled has the Poisson distribution with <span class="math inline">\(\lambda \neq 1.5\)</span></li>
+<li><span class="math inline">\(\alpha=0.01\)</span></li>
+<li>Reject the null hypothesis if <span class="math inline">\(\chi^2 &gt; \chi_{0.01}^2(4)=13.277\)</span>, degree of freedom is <span class="math inline">\(k-m-1=5-0-1=4\)</span>. Where <span class="math inline">\(k=5, m=0\)</span>(the number of parameters of the probability distribution).</li>
+<li>Since <span class="math inline">\(\chi^2 \approx 20.148\)</span> exceeds <span class="math inline">\(13.277\)</span>, the null hypothesis must be rejected; we conclude that either the population does not have a Poisson distribution or it has a Poisson distribution with <span class="math inline">\(\lambda\)</span> different from 1.5.</li>
+</ol>
+</div>
+<div id="test-of-homogeneity" class="section level2">
+<h2><span class="header-section-number">4.3</span> Test of Homogeneity</h2>
+<blockquote>
+<p>Data : 【Modern Elementary Statistics (11th Edition): John E. Freund; p342】</p>
+<p>With reference to the problem dealing with the factors contribution most to one’s well-being, test at the 0.01 level of significance whether for each of the three alternatives the probabilities are the same for persons who are single, married, or widowed or divorced.</p>
+</blockquote>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Marry
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Single
+</th>
+<th style="text-align:center;">
+Married
+</th>
+<th style="text-align:center;">
+Widowed or divorced
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Health1
+</td>
+<td style="text-align:center;">
+41
+</td>
+<td style="text-align:center;">
+27
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Health2
+</td>
+<td style="text-align:center;">
+49
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Health3
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+33
+</td>
+<td style="text-align:center;">
+25
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">marriage &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">41</span>, <span class="dv">49</span>, <span class="dv">42</span>, <span class="dv">27</span>, <span class="dv">50</span>, <span class="dv">33</span>, <span class="dv">12</span>, <span class="dv">21</span>, <span class="dv">25</span>)
+<span class="kw">dim</span>(marriage) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>)
+<span class="kw">chisq.test</span>(marriage, <span class="dt">correct=</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  marriage
+## X-squared = 5.3371, df = 4, p-value = 0.2544</code></pre>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0\)</span>:<span class="math inline">\(p_{i1}=p_{i2}=p_{i3}\)</span> for <span class="math inline">\(i=1,2,3\)</span>.<br />
+<span class="math inline">\(H_A\)</span>:<span class="math inline">\(p_{i1}, p_{i2}, p_{i3}\)</span> are not all equal for at least one value of <span class="math inline">\(i\)</span>.</li>
+<li><span class="math inline">\(\alpha=0.01\)</span></li>
+<li>Reject the null hypothesis if <span class="math inline">\(\chi^2 &gt; \chi_{0.01}^2(4)=13.277\)</span>, where degrees of freedom is <span class="math inline">\((3-1)(3-1)=4\)</span>.</li>
+<li>Since <span class="math inline">\(\chi^2\approx5.337\)</span> is less than 13.277, the null hypothesis must be accepted; that is ,we conclude that for each of the three alternatives the probabilities are the same for persons who are single, married, or widowed or divorced.</li>
+</ol>
+</div>
+<div id="test-of-independence" class="section level2">
+<h2><span class="header-section-number">4.4</span> Test of Independence</h2>
+<blockquote>
+<p>Data : 【Modern Elementary Statistics (11th Edition): John E. Freund; p348; 14.23】</p>
+<p>A sample survey conducted at a large state university, whether there is a relationship between students’ interest and ability in studying a foreign language. Use the 0.01 level of significance.</p>
+</blockquote>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Ability1
+</th>
+<th style="text-align:center;">
+Ability2
+</th>
+<th style="text-align:center;">
+Ability3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Interest1
+</td>
+<td style="text-align:center;">
+28
+</td>
+<td style="text-align:center;">
+17
+</td>
+<td style="text-align:center;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Interest2
+</td>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:center;">
+40
+</td>
+<td style="text-align:center;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Interest3
+</td>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:center;">
+28
+</td>
+<td style="text-align:center;">
+40
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">university &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">12</span>, <span class="dv">17</span>, <span class="dv">40</span>, <span class="dv">28</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">40</span>)
+<span class="kw">dim</span>(university) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>)
+<span class="kw">chisq.test</span>(university, <span class="dt">correct=</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  university
+## X-squared = 26.774, df = 4, p-value = 2.209e-05</code></pre>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_0\)</span>:Student’s interest and ability are independent. <span class="math inline">\(H_A\)</span>:Student’s interest and ability are not independent.</li>
+<li><span class="math inline">\(\alpha=0.01\)</span></li>
+<li>Reject the null hypothesis if <span class="math inline">\(\chi^2 &gt; \chi_{0.01}^2(4)=13.277\)</span>, where degrees of freedom is <span class="math inline">\((3-1)(3-1)=4\)</span>.</li>
+<li>Since <span class="math inline">\(\chi^2\approx 26.774\)</span> is greater than 13.277, the null hypothesis must be rejected; that is , we conclude that there is a relationship between student’s interest and ability in studying a foreign language.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="one-way-anova.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Charlotte_Statistics.pdf", "Charlotte_Statistics.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
